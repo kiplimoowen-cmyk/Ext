@@ -1,1 +1,36 @@
+# Forest Fires Prevention & Prediction Analysis
+
+This repository contains a comprehensive data science and machine learning analysis of the **Forest Fires** dataset from the UCI Machine Learning Repository. The project investigates key meteorological predictors (temperature, wind, relative humidity, rain) and fire indices (FFMC, DMC, DC, ISI) to predict and classify the burned area of forest fires.
+
+## Project Structure & Workflow
+
+### 1. Data Acquisition & Exploration (EDA)
+* Loaded the Forest Fires dataset containing 517 observations.
+* Examined correlations showing that temperature (`temp`) and Drought Code (`DMC`) have the strongest positive correlation with the burned area, while Relative Humidity (`RH`) has a negative correlation.
+* Visualized distributions, key predictors vs. target scatterplots, and residual plots.
+
+### 2. Regression Modeling & Enhancements
+* **Baseline Linear Regression**: Fit using all numerical features to establish a performance benchmark.
+* **Nonlinear & Interaction Models**: Added quadratic terms (e.g., $temp^2$, $wind^2$) and interactions (e.g., $temp \times wind$) to capture non-linear relationships.
+* **Categorical & Log-Transformed Models**: Integrated dummy variables for temporal predictors (`month`, `day`) and addressed severe target skewness using a logarithmic transformation: $\log(area + 1)$.
+
+### 3. Model Diagnostics
+* Evaluated and compared model performance using $R^2$, Adjusted $R^2$, AIC, and BIC.
+* Produced residual and Q-Q plots to evaluate the normality and homoscedasticity of residuals.
+* Identified highly influential data points using Cook's Distance.
+* Assessed multicollinearity using the Variance Inflation Factor (VIF).
+
+### 4. Regularization (Collinearity Management)
+* Applied **Ridge (L2)** and **Lasso (L1)** regression to mitigate multicollinearity and prevent overfitting.
+* Extracted and compared coefficient weights and Mean Squared Error (MSE) metrics.
+
+### 5. Binary Classification
+* Discretized the continuous target variable (`area`) into a binary classification problem using the median burned area threshold.
+* Standardized predictors and trained a **Logistic Regression** model.
+* Evaluated the classification performance using Accuracy, Precision, Recall, F1-Score, and a Confusion Matrix.
+
+## Key Findings
+* **Skewed Target**: The physical burned area is heavily zero-skewed, making direct linear predictions challenging. Applying a logarithmic transformation significantly improves residual normality.
+* **Regularization vs. Baseline**: Ridge and Lasso regressions provide crucial stability and prevent coefficient explosion in the presence of correlated meteorological indices.
+* **Classification Utility**: Formulating the target as a binary task (high vs. low risk) yields a more practical and robust framework for forest fire threat categorization.
 
